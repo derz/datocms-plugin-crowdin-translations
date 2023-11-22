@@ -1,5 +1,13 @@
 import { ProgressObject } from './types';
 
+function getLanguageCode(lc_cc: string) {
+  if (lc_cc.includes('-')) {
+    return lc_cc.split('-')[0];
+  }
+
+  return lc_cc;
+}
+
 export default async function fetchCrowdinStatus(
   projectID: string,
   recordID: string,
@@ -42,7 +50,7 @@ export default async function fetchCrowdinStatus(
   const progressObject: ProgressObject = {};
 
   fileProgressResponse.data.map((progress: any) => {
-    if (localesInThisRecord.includes(progress.data.languageId)) {
+    if (localesInThisRecord.includes(getLanguageCode(progress.data.languageId))) {
       progressObject[progress.data.languageId] = progress.data.phrases;
     }
   });
