@@ -50,8 +50,9 @@ export default async function fetchCrowdinStatus(
   const progressObject: ProgressObject = {};
 
   fileProgressResponse.data.map((progress: any) => {
-    if (localesInThisRecord.includes(getLanguageCode(progress.data.languageId))) {
-      progressObject[progress.data.languageId] = progress.data.phrases;
+    const lc = getLanguageCode(progress.data.languageId);
+    if (localesInThisRecord.includes(lc)) {
+      progressObject[lc] = progress.data.phrases;
     }
   });
 
