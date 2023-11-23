@@ -1,4 +1,8 @@
 export default function isAssetObject(obj: object) {
+  if (typeof obj !== 'object' || obj == null) {
+    return false;
+  }
+
   if (!obj) return false;
 
   const requiredKeys = [

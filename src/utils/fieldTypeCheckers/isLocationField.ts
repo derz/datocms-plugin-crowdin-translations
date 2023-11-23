@@ -1,4 +1,8 @@
 export default function isLocationField(obj: any) {
+  if (typeof obj !== 'object' || obj == null) {
+    return false;
+  }
+
   const expectedKeys = ['latitude', 'longitude'];
 
   for (const key in obj) {
