@@ -1,4 +1,8 @@
 export default function isColorField(obj: any) {
+  if (typeof obj !== 'object' || obj == null) {
+    return false;
+  }
+
   const expectedKeys = ['alpha', 'blue', 'green', 'red'];
 
   for (const key in obj) {
