@@ -1,7 +1,7 @@
 const locales = {
     'de': 'de-CH',
     'fr': 'fr-CH',
-    'en': 'en-UK',
+    'en': 'en-GB',
 };
 
 export function mapLocale(locale: string) {
