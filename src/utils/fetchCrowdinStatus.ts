@@ -1,12 +1,5 @@
+import { mapLocale } from './mapLocales';
 import { ProgressObject } from './types';
-
-function getLanguageCode(lc_cc: string) {
-  if (lc_cc.includes('-')) {
-    return lc_cc.split('-')[0];
-  }
-
-  return lc_cc;
-}
 
 export default async function fetchCrowdinStatus(
   projectID: string,
@@ -50,9 +43,11 @@ export default async function fetchCrowdinStatus(
   const progressObject: ProgressObject = {};
 
   fileProgressResponse.data.map((progress: any) => {
-    const lc = getLanguageCode(progress.data.languageId);
-    if (localesInThisRecord.includes(lc)) {
-      progressObject[lc] = progress.data.phrases;
+    const lccc = progress.data.languageId;
+    const mappedLocales = localesInThisRecord.map((locale) => mapLocale(locale));
+
+    if (mappedLocales.includes(lccc)) {
+      progressObject[lccc] = progress.data.phrases;
     }
   });
 

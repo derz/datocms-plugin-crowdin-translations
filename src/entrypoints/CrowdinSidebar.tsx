@@ -9,6 +9,7 @@ import FetchLocaleButton from '../components/FetchLocaleButton';
 import LoadingSpinner from '../components/LoadingSpinner';
 import DeleteFileButton from '../components/DeleteFileButton';
 import s from './styles.module.css';
+import { mapLocale } from '../utils/mapLocales';
 
 type PropTypes = {
   ctx: RenderItemFormSidebarPanelCtx;
@@ -73,7 +74,7 @@ export default function CrowdinSidebar({ ctx }: PropTypes) {
         isLoading={isLoading}
         crowdinIsSetup={crowdinIsSetup}
         fileWasSubmited={fileWasSubmited}
-        currentLocale={ctx.locale} //i should've just passed the context
+        currentLocale={mapLocale(ctx.locale)} //i should've just passed the context
         openModal={ctx.openModal}
         notice={ctx.notice}
         setFileWasSubmited={setFileWasSubmited}
@@ -93,15 +94,15 @@ export default function CrowdinSidebar({ ctx }: PropTypes) {
       {!isLoading &&
         crowdinIsSetup &&
         fileWasSubmited &&
-        !localeProgresses[ctx.locale] &&
-        ctx.locale !== sourceLocale[0] && (
+        !localeProgresses[mapLocale(ctx.locale)] &&
+        mapLocale(ctx.locale) !== mapLocale(sourceLocale[0]) && (
           <div className={s.currentLocaleContainer}>
             <p>
               This locale is not listed inside your Crowdin project as a
               translatable locale.
             </p>
             <p>
-              You can add <b>"{ctx.locale}"</b> to your Crowdin project if you'd
+              You can add <b>"{mapLocale(ctx.locale)}"</b> to your Crowdin project if you'd
               like this locale to also be translated.
             </p>
           </div>

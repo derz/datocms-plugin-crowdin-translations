@@ -4,6 +4,7 @@ import sendFileToCrowdin from '../utils/sendFileToCrowdin';
 import { Button } from 'datocms-react-ui';
 import { FieldPreferences, ProgressObject } from '../utils/types';
 import fetchCrowdinStatus from '../utils/fetchCrowdinStatus';
+import { mapLocale } from '../utils/mapLocales';
 
 type PropTypes = {
   ctx: RenderItemFormSidebarPanelCtx;
@@ -79,7 +80,7 @@ const SendRecordButton: React.FC<PropTypes> = ({
               ctx.plugin.attributes.parameters.crowdinApiKey as string,
               ctx.formValues,
               ctx.item!.id,
-              ctx.locale,
+              mapLocale(ctx.locale),
               ctx.plugin.attributes.parameters
                 .crowdinFieldPreferences as FieldPreferences,
               setFileWasSubmited,

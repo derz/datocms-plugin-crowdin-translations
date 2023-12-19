@@ -1,6 +1,7 @@
 import { RenderItemFormSidebarPanelCtx } from 'datocms-plugin-sdk';
 import formatCrowdinResponse from './formatCrowdinResponse';
 import mergeDeep from './mergeDeep';
+import { mapLocale } from './mapLocales';
 
 export default async function handleFetchLocale(
   ctx: RenderItemFormSidebarPanelCtx,
@@ -34,7 +35,7 @@ export default async function handleFetchLocale(
           'Content-Type': 'application/json',
         },
         body: JSON.stringify({
-          targetLanguageId: ctx.locale,
+          targetLanguageId: mapLocale(ctx.locale),
         }),
       }
     )
@@ -45,7 +46,7 @@ export default async function handleFetchLocale(
   const formatedResponse: any = formatCrowdinResponse(
     translatedRecord,
     sourceLocale[0],
-    ctx.locale
+    mapLocale(ctx.locale)
   );
 
   try {
