@@ -46,7 +46,7 @@ export default async function handleFetchLocale(
   const formatedResponse: any = formatCrowdinResponse(
     translatedRecord,
     sourceLocale[0],
-    mapLocale(ctx.locale)
+    ctx.locale
   );
 
   try {
