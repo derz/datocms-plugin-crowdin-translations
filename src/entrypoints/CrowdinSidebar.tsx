@@ -60,7 +60,7 @@ export default function CrowdinSidebar({ ctx }: PropTypes) {
 
       <FetchLocaleButton
         localeProgresses={localeProgresses}
-        currentLocale={ctx.locale}
+        currentLocale={mapLocale(ctx.locale)}
         isLoading={isLoading}
         fileWasSubmited={fileWasSubmited}
         crowdinIsSetup={crowdinIsSetup}
@@ -74,7 +74,7 @@ export default function CrowdinSidebar({ ctx }: PropTypes) {
         isLoading={isLoading}
         crowdinIsSetup={crowdinIsSetup}
         fileWasSubmited={fileWasSubmited}
-        currentLocale={mapLocale(ctx.locale)} //i should've just passed the context
+        currentLocale={ctx.locale} //i should've just passed the context
         openModal={ctx.openModal}
         notice={ctx.notice}
         setFileWasSubmited={setFileWasSubmited}
